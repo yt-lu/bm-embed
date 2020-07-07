@@ -28,19 +28,21 @@ shinyUI(fluidPage(
     # Sidebar with a slider input for number of bins
     sidebarLayout(
         sidebarPanel(
-            numericInput("m",
-                         "The maximum radians",
-                         value = 360), 
+            withMathJax(),
+            numericInput("dt",
+                         "\\(\\theta\\)",
+                         value = 103.65), 
             numericInput("n",
                         "The number of points",
-                        value = 200)
+                        value = 200), 
+            sliderInput("u",
+                        "Slide to reorient the graph",
+                        min = 0, max = 180, value = 0, ticks = FALSE,
+                        )
         ),
-
         # Show a plot of the generated distribution
         mainPanel(
-            plotOutput("distPlot"),
-            hr(),
-            htmlOutput("copyright")
+            plotOutput("distPlot")
         )
     )
 ))
